@@ -1,0 +1,121 @@
+{
+	"id": "44110a76-a5cb-dad3-6334-6a0ae5676aa0",
+	"name": "HW3 - Web API",
+	"description": "Creating a oAuth request to get a access token, which is then used to make a call out to github to return information on my Repos ",
+	"order": [
+		"80a50e79-0e49-edd6-2b7d-5aa3ff7d6ca8",
+		"0352014e-fb63-d080-af75-0dd2112da353",
+		"7f526b7e-c0a1-032f-40df-64c25d8df1d4",
+		"ca9c962e-d765-12e4-1ac7-10c8309c922a"
+	],
+	"folders": [],
+	"timestamp": 1489099860245,
+	"owner": "1391353",
+	"public": false,
+	"requests": [
+		{
+			"id": "0352014e-fb63-d080-af75-0dd2112da353",
+			"headers": "Authorization: Bearer {{access_token}}\n",
+			"url": "http://brummetj-test.apigee.net/homework3/github",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "44110a76-a5cb-dad3-6334-6a0ae5676aa0",
+			"data": null,
+			"dataMode": "params",
+			"name": "Github Request - Successful ",
+			"description": "Successful Request",
+			"descriptionFormat": "html",
+			"time": 1489103799574,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "7f526b7e-c0a1-032f-40df-64c25d8df1d4",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "https://brummetj-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "44110a76-a5cb-dad3-6334-6a0ae5676aa0",
+			"data": [
+				{
+					"key": "client_id",
+					"value": "YDeniexBoikE2EWj5uQ5tps5TagHGm0K ",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_secret",
+					"value": "ryycelA4l5",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Access Token - With incorrect Creds",
+			"description": "Getting Access Token with incorrect Creds. ",
+			"descriptionFormat": "html",
+			"time": 1489102941291,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\nvar json = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"access_token\", json.access_token);",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "80a50e79-0e49-edd6-2b7d-5aa3ff7d6ca8",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "https://brummetj-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "client_id",
+					"value": "YDeniexBoikE2EWj5uQ5tps5TagHGm0K ",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_secret",
+					"value": "ryycelA4l5GwEGAs",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\nvar json = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"access_token\", json.access_token);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1489102924268,
+			"name": "Access Token - With Correct Creds. ",
+			"description": "Getting Access Token with Correct Creds. ",
+			"collectionId": "44110a76-a5cb-dad3-6334-6a0ae5676aa0",
+			"responses": []
+		},
+		{
+			"id": "ca9c962e-d765-12e4-1ac7-10c8309c922a",
+			"headers": "Authorization: Bearer {{access_toke}}\n",
+			"url": "http://brummetj-test.apigee.net/homework3/github",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "44110a76-a5cb-dad3-6334-6a0ae5676aa0",
+			"data": null,
+			"dataMode": "params",
+			"name": "Github Request - unSuccessful!",
+			"description": "Making a unsuccessful",
+			"descriptionFormat": "html",
+			"time": 1489105657198,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
